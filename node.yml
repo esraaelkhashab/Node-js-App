@@ -1,0 +1,9 @@
+version: "3"
+services:
+  node-app:
+     build: .
+     container_name: "node-service-web"
+     ports:
+        - 8000:8000
+     restart: always
+  

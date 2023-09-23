@@ -1,12 +1,24 @@
 version: "3"
 services:
    mongo-express:
-    image: mongo-express
-    container_name: mongo-service
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      image: mongo-express
+      container_name: mongo-express-service
+      restart: always
+      ports:
+        - 8081:8081
+      environment:
+        ME_CONFIG_MONGODB_ADMINUSERNAME: ${MongoEX_USER}
+        ME_CONFIG_MONGODB_ADMINPASSWORD: ${MongoEX_PASSWORD}
+        ME_CONFIG_MONGODB_URL: ${MOngo_URL}
+      restart: always 
+    
+   mongo:
+      image: mongo
+      container_name: mongo-service
+      restart: always
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: ${Mongo_user}
+        MONGO_INITDB_ROOT_PASSWORD: ${Mongo_Password}
+      
+      volumes:
+        - ${Mongo_Volume}
